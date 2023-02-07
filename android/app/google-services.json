@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "952532671501",
+    "project_id": "shafee-app",
+    "storage_bucket": "shafee-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952532671501:android:dbc5070b5ffe78fda3c944",
+        "android_client_info": {
+          "package_name": "ml.swift.shafee_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952532671501-3l5r29np1l6j2oa0u597lru48e59jdt5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ml.swift.shafee_app",
+            "certificate_hash": "8358a8b269b74c3fdca94a6d5af59155ff27f5ff"
+          }
+        },
+        {
+          "client_id": "952532671501-pplpq1n40d2hgo2tg3t9b3l1acvekn2l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_ndhpzX8pMy3fwdMT4k_cabzVxbWIKEw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952532671501-pplpq1n40d2hgo2tg3t9b3l1acvekn2l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

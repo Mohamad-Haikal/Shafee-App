@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\.FILES STORE\Programming\Flutter\shafee_app\build\windows\CMakeFiles\4e94d9ce22e5849f8e9965f11e601cf6\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{C0357159-999B-3712-9F87-67867B0EECFA}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

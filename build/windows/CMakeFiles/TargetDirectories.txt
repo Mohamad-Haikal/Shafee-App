@@ -1,0 +1,10 @@
+D:/.FILES STORE/Programming/Flutter/shafee_app/build/windows/CMakeFiles/INSTALL.dir
+D:/.FILES STORE/Programming/Flutter/shafee_app/build/windows/CMakeFiles/ALL_BUILD.dir
+D:/.FILES STORE/Programming/Flutter/shafee_app/build/windows/CMakeFiles/ZERO_CHECK.dir
+D:/.FILES STORE/Programming/Flutter/shafee_app/build/windows/flutter/CMakeFiles/flutter_wrapper_plugin.dir
+D:/.FILES STORE/Programming/Flutter/shafee_app/build/windows/flutter/CMakeFiles/flutter_wrapper_app.dir
+D:/.FILES STORE/Programming/Flutter/shafee_app/build/windows/flutter/CMakeFiles/flutter_assemble.dir
+D:/.FILES STORE/Programming/Flutter/shafee_app/build/windows/flutter/CMakeFiles/INSTALL.dir
+D:/.FILES STORE/Programming/Flutter/shafee_app/build/windows/runner/CMakeFiles/shafee_app.dir
+D:/.FILES STORE/Programming/Flutter/shafee_app/build/windows/runner/CMakeFiles/INSTALL.dir
+D:/.FILES STORE/Programming/Flutter/shafee_app/build/windows/runner/CMakeFiles/ALL_BUILD.dir
