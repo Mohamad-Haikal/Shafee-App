@@ -10,7 +10,7 @@ import 'package:shafee_app/services/routes.dart';
 import 'package:shafee_app/shared/home.dart';
 import 'package:shafee_app/resources.dart';
 
-void main() async {
+void main() async { 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   WidgetsFlutterBinding.ensureInitialized();
