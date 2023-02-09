@@ -22,7 +22,7 @@ class _TopsScreenState extends State<TopsScreen> {
       extendBody: true,
       backgroundColor: ColorsData.primaryColor,
       appBar: CustomAppBarWidget(
-        mainPageTitle: "",
+        mainPageTitle: Text(''),
       ),
       bottomNavigationBar: BottomNavBar(index: 2),
       body: Center(

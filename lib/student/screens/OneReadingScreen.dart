@@ -23,7 +23,7 @@ class _OneReadingScreenState extends State<OneReadingScreen> {
       extendBody: true,
       backgroundColor: ColorsData.primaryColor,
       appBar: CustomAppBarWidget(
-        mainPageTitle: "",
+        mainPageTitle: Text(''),
       ),
       bottomNavigationBar: BottomNavBar(index: 2),
       body: Column(

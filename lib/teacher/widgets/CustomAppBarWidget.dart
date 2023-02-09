@@ -9,7 +9,7 @@ import 'package:shafee_app/shared/contact_us.dart';
 import 'package:shafee_app/teacher/widgets/PopUpMenuWidget.dart';
 
 class CustomAppBarWidget extends StatelessWidget with PreferredSizeWidget {
-  final String mainPageTitle;
+  final Widget mainPageTitle;
 
   CustomAppBarWidget({
     Key? key,
@@ -22,7 +22,7 @@ class CustomAppBarWidget extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(mainPageTitle),
+      title: mainPageTitle,
       actions: [
         PopUpMenuWidget(
           menuList: [

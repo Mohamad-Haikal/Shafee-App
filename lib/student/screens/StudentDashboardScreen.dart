@@ -1,8 +1,10 @@
 // ignore_for_file: file_names, avoid_print
+import 'dart:ffi';
 import 'dart:typed_data';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:card_swiper/card_swiper.dart';
@@ -35,13 +37,14 @@ class StudentDashboardScreenState extends State<StudentDashboardScreen> {
   final User? user = FirebaseAuth.instance.currentUser;
   late SharedPreferences sp;
 
-  var name = FirebaseCtrl.getSpecificDataOfCurrentUser('name');
+  late String name;
 
   @override
   Widget build(BuildContext context) {
     SchedulerBinding.instance.addPostFrameCallback(
       (timeStamp) async {
         sp = await SharedPreferences.getInstance();
+        name = await FirebaseCtrl.getSpecificDataOfCurrentUser('name') ?? '';
       },
     );
     return ResponsiveSizer(
@@ -50,7 +53,7 @@ class StudentDashboardScreenState extends State<StudentDashboardScreen> {
           extendBody: true,
           backgroundColor: ColorsData.primaryColor,
           appBar: CustomAppBarWidget(
-            mainPageTitle: "",
+            mainPageTitle: Text(""),
           ),
           bottomNavigationBar: BottomNavBar(index: MyApp.appbarIndex),
           body: Stack(
@@ -190,7 +193,7 @@ class StudentDashboardScreenState extends State<StudentDashboardScreen> {
                   initialChildSize: 0.7,
                   maxChildSize: 1,
                   minChildSize: 0.7,
-                  snap: true,
+                  // snap: true,
                   builder: (context, scrollController) {
                     return Container(
                       decoration: BoxDecoration(

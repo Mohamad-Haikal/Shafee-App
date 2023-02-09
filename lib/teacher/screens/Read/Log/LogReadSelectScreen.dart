@@ -30,7 +30,7 @@ class _LogReadSelectScreenState extends State<LogReadSelectScreen> {
       extendBody: true,
       backgroundColor: ColorsData.primaryColor,
       appBar: CustomAppBarWidget(
-        mainPageTitle: "",
+        mainPageTitle: Text(''),
       ),
       bottomNavigationBar: BottomNavBar(index: 2),
       body: Column(

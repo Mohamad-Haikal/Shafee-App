@@ -43,7 +43,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
       extendBody: true,
       backgroundColor: ColorsData.primaryColor,
       appBar: CustomAppBarWidget(
-        mainPageTitle: "",
+        mainPageTitle: Text(''),
       ),
       bottomNavigationBar: BottomNavBar(index: 2),
       body: Stack(
