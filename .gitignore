@@ -46,4 +46,3 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 lib/main.dart
-.dart_tool/flutter_build/dart_plugin_registrant.dart

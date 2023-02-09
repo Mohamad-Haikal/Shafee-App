@@ -48,7 +48,7 @@ class RouterCtrl {
       case "/student/profile":
         return returnRoute(const StudentProfileScreen());
       case "/student/dashboard":
-        return returnRoute(StudentDashboardScreen());
+        return returnRoute(const StudentDashboardScreen());
       case "/student/tops":
         return returnRoute(const TopsScreen());
       case "/student/attend/log":
