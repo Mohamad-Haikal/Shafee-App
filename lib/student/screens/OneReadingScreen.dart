@@ -20,8 +20,9 @@ class _OneReadingScreenState extends State<OneReadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-extendBody: true,
-          backgroundColor: ColorsData.themeColor[2],      appBar: CustomAppBarWidget(
+      extendBody: true,
+      backgroundColor: ColorsData.primaryColor,
+      appBar: CustomAppBarWidget(
         mainPageTitle: "",
       ),
       bottomNavigationBar: BottomNavBar(index: 2),
@@ -159,8 +160,7 @@ extendBody: true,
                                 Text(
                                   "هل تم التسميع ؟",
                                   style: TextStyle(fontSize: 15.5.sp, fontWeight: FontWeight.w700),
-                                )
-                                ,
+                                ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [

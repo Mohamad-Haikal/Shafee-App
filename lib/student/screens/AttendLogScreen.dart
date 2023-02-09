@@ -22,7 +22,7 @@ class _AttendLogScreenState extends State<AttendLogScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-          backgroundColor: ColorsData.themeColor[2],
+      backgroundColor: ColorsData.primaryColor,
       appBar: CustomAppBarWidget(
         mainPageTitle: "",
       ),

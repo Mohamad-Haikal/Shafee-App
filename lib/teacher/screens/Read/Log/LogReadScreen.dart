@@ -26,8 +26,9 @@ class _LogReadScreenState extends State<LogReadScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-extendBody: true,
-          backgroundColor: ColorsData.themeColor[2],       appBar: CustomAppBarWidget(
+      extendBody: true,
+      backgroundColor: ColorsData.primaryColor,
+      appBar: CustomAppBarWidget(
         mainPageTitle: "",
       ),
       bottomNavigationBar: BottomNavBar(index: 2),

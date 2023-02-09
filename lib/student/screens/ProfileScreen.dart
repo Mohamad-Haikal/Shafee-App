@@ -1,23 +1,16 @@
 // ignore_for_file:  , prefer_const_literals_to_create_immutables, sort_child_properties_last, file_names, unnecessary_const
 
-import 'dart:convert';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_loading/card_loading.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shafee_app/resources.dart';
-import 'package:shafee_app/services/authentication.dart';
 import 'package:shafee_app/services/firebase.dart';
 
-import 'package:shafee_app/shared/TestData.dart';
-import 'package:shafee_app/student/screens/AttendLogScreen.dart';
-import 'package:shafee_app/student/screens/ReadingLogScreen.dart';
 import 'package:shafee_app/student/widgets/BottomNavBar.dart';
 import 'package:shafee_app/student/widgets/CustomAppBarWidget.dart';
 import 'package:shafee_app/student/widgets/DashboardLayoutCard.dart';
@@ -48,7 +41,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      backgroundColor: ColorsData.themeColor[2],
+      backgroundColor: ColorsData.primaryColor,
       appBar: CustomAppBarWidget(
         mainPageTitle: "",
       ),
@@ -90,7 +83,36 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20.sp),
                                 child: CachedNetworkImage(
-                                  imageUrl: sp.getString('profileImageUrl') ?? '',
+                                  cacheKey: 'ProfileImage',
+                                  imageUrl: '${sp.getString('profileImageUrl')}',
+                                  placeholder: (context, url) {
+                                    return Opacity(
+                                      opacity: 0.3,
+                                      child: CardLoading(
+                                        height: 35.sp,
+                                        width: 35.sp,
+                                        borderRadius: const BorderRadius.all(Radius.circular(25)),
+                                        margin: const EdgeInsets.only(bottom: 10),
+                                        cardLoadingTheme: const CardLoadingTheme(
+                                          colorOne: Color.fromARGB(255, 219, 219, 219),
+                                          colorTwo: Color.fromARGB(255, 187, 187, 187),
+                                        ),
+                                        curve: Curves.easeInOut,
+                                      ),
+                                    );
+                                  },
+                                  errorWidget: (context, url, error) => Stack(
+                                    children: [
+                                      Container(
+                                        color: Colors.white,
+                                      ),
+                                      Icon(
+                                        Icons.person,
+                                        size: 40.sp,
+                                        color: ColorsData.primaryColor,
+                                      ),
+                                    ],
+                                  ),
                                   fit: BoxFit.fill,
                                   width: 40.sp,
                                   height: 40.sp,

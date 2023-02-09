@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:card_swiper/card_swiper.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shafee_app/main.dart';
 import 'package:shafee_app/resources.dart';
@@ -22,9 +23,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StudentDashboardScreen extends StatefulWidget {
-  const StudentDashboardScreen({
-    Key? key,
-  }) : super(key: key);
+  const StudentDashboardScreen({super.key});
 
   @override
   StudentDashboardScreenState createState() => StudentDashboardScreenState();
@@ -38,18 +37,13 @@ class StudentDashboardScreenState extends State<StudentDashboardScreen> {
 
   var name = FirebaseCtrl.getSpecificDataOfCurrentUser('name');
 
-  getInstanceOfSp() async {
-    sp = await SharedPreferences.getInstance();
-  }
-
-  @override
-  void initState() {
-    getInstanceOfSp();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
+    SchedulerBinding.instance.addPostFrameCallback(
+      (timeStamp) async {
+        sp = await SharedPreferences.getInstance();
+      },
+    );
     return ResponsiveSizer(
       builder: (context, orientation, deviceType) {
         return Scaffold(
@@ -96,8 +90,8 @@ class StudentDashboardScreenState extends State<StudentDashboardScreen> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(20.sp),
                                     child: CachedNetworkImage(
-                                      cacheKey: 'profileImage',
-                                      imageUrl: sp.getString('profileImageUrl') ?? '',
+                                      cacheKey: 'ProfileImage',
+                                      imageUrl: '${sp.getString('profileImageUrl')}',
                                       placeholder: (context, url) {
                                         return Opacity(
                                           opacity: 0.3,

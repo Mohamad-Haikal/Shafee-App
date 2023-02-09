@@ -23,8 +23,9 @@ class _LogAttendScreenState extends State<LogAttendScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-extendBody: true,
-          backgroundColor: ColorsData.themeColor[2],       appBar: CustomAppBarWidget(
+      extendBody: true,
+      backgroundColor: ColorsData.primaryColor,
+      appBar: CustomAppBarWidget(
         mainPageTitle: "",
       ),
       bottomNavigationBar: BottomNavBar(index: 2),

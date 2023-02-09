@@ -34,7 +34,7 @@ class TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
         return Scaffold(
           resizeToAvoidBottomInset: false,
           extendBody: true,
-          backgroundColor: ColorsData.themeColor[2],
+          backgroundColor: ColorsData.primaryColor,
           appBar: CustomAppBarWidget(
             mainPageTitle: "",
           ),

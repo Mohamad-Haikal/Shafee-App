@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseCtrl {
+  static FirebaseAuth auth = FirebaseAuth.instance;
+
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -12,8 +14,7 @@ class FirebaseCtrl {
   }
 
   static Future<Map> _getDataOfCurrentUser() async {
-    FirebaseAuth _auth = FirebaseAuth.instance;
-    final User? user = _auth.currentUser;
+    final User? user = auth.currentUser;
     if (user != null) {
       // User is signed in
       DocumentSnapshot<Map<dynamic, dynamic>> snapshot = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
@@ -37,7 +38,6 @@ class FirebaseCtrl {
   }
 
   static Future<Map> _getDataOfAnyUser({required var uid}) async {
-    FirebaseAuth _auth = FirebaseAuth.instance;
     DocumentSnapshot<Map<dynamic, dynamic>> snapshot = await FirebaseFirestore.instance.doc(uid).get();
     if (snapshot.exists) {
       // User document exists
@@ -51,8 +51,7 @@ class FirebaseCtrl {
 
   // Get specific data from specific user (uid)
   static Future<String?> getSpecificDataOfCurrentUser(String parameter) async {
-    FirebaseAuth _auth = FirebaseAuth.instance;
-    final User? user = _auth.currentUser;
+    final User? user = auth.currentUser;
     if (user != null) {
       // User is signed in
       DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();

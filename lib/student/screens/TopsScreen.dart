@@ -20,7 +20,7 @@ class _TopsScreenState extends State<TopsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      backgroundColor: ColorsData.themeColor[2],
+      backgroundColor: ColorsData.primaryColor,
       appBar: CustomAppBarWidget(
         mainPageTitle: "",
       ),

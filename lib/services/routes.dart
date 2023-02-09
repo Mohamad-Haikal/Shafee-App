@@ -21,9 +21,6 @@ import 'package:shafee_app/teacher/screens/Read/Log/LogReadSelectScreen.dart';
 import 'package:shafee_app/teacher/widgets/StudentAttendListSelectWidget.dart';
 
 class RouterCtrl {
-
-
-  
   static Route<dynamic> returnRoute(Widget screenName) {
     return PageRouteBuilder(
       pageBuilder: (context, animation, secondaryAnimation) => screenName,
@@ -38,6 +35,7 @@ class RouterCtrl {
   }
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    RouteSettings _settings = settings;
     switch (settings.name) {
       case "/":
         return returnRoute(const Home());

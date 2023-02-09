@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shafee_app/services/firebase.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthenticationCtrl {
+class AuthCtrl {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
-
 
 /////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////
@@ -17,7 +17,7 @@ class AuthenticationCtrl {
       User? user = result.user;
       return user;
     } catch (e) {
-      print(e.toString());
+      print('signInWithEmail'+''+e.toString());
       return null;
     }
   }
@@ -35,7 +35,7 @@ class AuthenticationCtrl {
       });
       return user;
     } catch (e) {
-      print(e.toString());
+      print('signUpWithEmail()'+''+e.toString());
       return null;
     }
   }
@@ -45,12 +45,8 @@ class AuthenticationCtrl {
 
   // Sign out from firebase
   static Future signOut() async {
-    try {
-      return await _auth.signOut();
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
+    await (await SharedPreferences.getInstance()).clear();
+    return FirebaseCtrl.auth.signOut();
   }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -58,13 +54,8 @@ class AuthenticationCtrl {
 
   // Get Current User
   static Future<User?> currentUser() async {
-    try {
       User? user = _auth.currentUser;
       return user;
-    } catch (e) {
-      print(e.toString());
-      return null;
-    }
   }
 
 /////////////////////////////////////////////////////////////////////////////////

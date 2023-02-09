@@ -33,8 +33,9 @@ class _AddReadScreenState extends State<AddReadScreen> {
     ToastContext().init(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-extendBody: true,
-          backgroundColor: ColorsData.themeColor[2],       appBar: CustomAppBarWidget(
+      extendBody: true,
+      backgroundColor: ColorsData.primaryColor,
+      appBar: CustomAppBarWidget(
         mainPageTitle: "",
       ),
       bottomNavigationBar: BottomNavBar(index: 2),

@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:shafee_app/services/authentication.dart';
 import 'package:shafee_app/student/widgets/PopUpMenuWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,7 +30,7 @@ class CustomAppBarWidget extends StatelessWidget with PreferredSizeWidget {
             PopupMenuItem(
               child: Text("Log Out"),
               onTap: () async {
-                await FirebaseAuth.instance.signOut();
+                await AuthCtrl.signOut();
                 if (FirebaseAuth.instance.currentUser == null) {
                   final sp = await SharedPreferences.getInstance();
                   sp.clear;

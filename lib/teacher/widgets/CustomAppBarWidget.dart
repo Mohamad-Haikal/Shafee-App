@@ -31,7 +31,7 @@ class CustomAppBarWidget extends StatelessWidget with PreferredSizeWidget {
             PopupMenuItem(
               child: Text("Log Out"),
               onTap: () async {
-                await AuthenticationCtrl.signOut();
+                await AuthCtrl.signOut();
                 Navigator.pushNamedAndRemoveUntil(context, '/welcome', (route) => false);
               },
             )
