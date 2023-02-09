@@ -56,124 +56,131 @@ class StudentDashboardScreenState extends State<StudentDashboardScreen> {
           body: Stack(
             children: [
               Container(
-                padding: const EdgeInsets.only(top: 56),
-                alignment: Alignment.topCenter,
-                height: 35.h,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.3,
+                alignment: Alignment.center,
                 child: InkWell(
                   onTap: () {
                     Navigator.pushNamed(context, '/student/profile');
                   },
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      FutureBuilder(
-                        future: FirebaseCtrl.getSpecificDataOfCurrentUser('name'),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return Stack(
-                              fit: StackFit.loose,
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(boxShadow: const [
-                                    BoxShadow(
-                                      blurRadius: 20,
-                                    )
-                                  ], borderRadius: BorderRadius.circular(20.sp)),
-                                  width: 40.sp,
-                                  height: 40.sp,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20.sp),
-                                    child: CachedNetworkImage(
-                                      cacheKey: 'ProfileImage',
-                                      imageUrl: '${sp.getString('profileImageUrl')}',
-                                      placeholder: (context, url) {
-                                        return Opacity(
-                                          opacity: 0.3,
-                                          child: CardLoading(
-                                            height: 35.sp,
-                                            width: 35.sp,
-                                            borderRadius: const BorderRadius.all(Radius.circular(25)),
-                                            margin: const EdgeInsets.only(bottom: 10),
-                                            cardLoadingTheme: const CardLoadingTheme(
-                                              colorOne: Color.fromARGB(255, 219, 219, 219),
-                                              colorTwo: Color.fromARGB(255, 187, 187, 187),
-                                            ),
-                                            curve: Curves.easeInOut,
-                                          ),
-                                        );
-                                      },
-                                      errorWidget: (context, url, error) => Icon(
-                                        Icons.person,
-                                        size: 40.sp,
-                                        color: Colors.white,
-                                      ),
-                                      fit: BoxFit.fill,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          FutureBuilder(
+                            future: FirebaseCtrl.getSpecificDataOfCurrentUser('name'),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Stack(
+                                  fit: StackFit.loose,
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(boxShadow: const [
+                                        BoxShadow(
+                                          blurRadius: 20,
+                                        )
+                                      ], borderRadius: BorderRadius.circular(20.sp)),
                                       width: 40.sp,
                                       height: 40.sp,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(20.sp),
+                                        child: CachedNetworkImage(
+                                          cacheKey: 'ProfileImage',
+                                          imageUrl: '${sp.getString('profileImageUrl')}',
+                                          placeholder: (context, url) {
+                                            return Opacity(
+                                              opacity: 0.3,
+                                              child: CardLoading(
+                                                height: 35.sp,
+                                                width: 35.sp,
+                                                borderRadius: const BorderRadius.all(Radius.circular(25)),
+                                                margin: const EdgeInsets.only(bottom: 10),
+                                                cardLoadingTheme: const CardLoadingTheme(
+                                                  colorOne: Color.fromARGB(255, 219, 219, 219),
+                                                  colorTwo: Color.fromARGB(255, 187, 187, 187),
+                                                ),
+                                                curve: Curves.easeInOut,
+                                              ),
+                                            );
+                                          },
+                                          errorWidget: (context, url, error) => Stack(
+                                            children: [
+                                              Container(
+                                                color: Colors.white,
+                                              ),
+                                              Icon(
+                                                Icons.person,
+                                                size: 40.sp,
+                                                color: ColorsData.primaryColor,
+                                              ),
+                                            ],
+                                          ),
+                                          fit: BoxFit.fill,
+                                          width: 40.sp,
+                                          height: 40.sp,
+                                        ),
+                                      ),
                                     ),
+                                  ],
+                                );
+                              }
+                              return Opacity(
+                                opacity: 0.3,
+                                child: CardLoading(
+                                  height: 35.sp,
+                                  width: 35.sp,
+                                  borderRadius: const BorderRadius.all(Radius.circular(25)),
+                                  margin: const EdgeInsets.only(bottom: 10),
+                                  cardLoadingTheme: const CardLoadingTheme(
+                                    colorOne: Color.fromARGB(255, 219, 219, 219),
+                                    colorTwo: Color.fromARGB(255, 187, 187, 187),
                                   ),
+                                  curve: Curves.easeInOut,
                                 ),
-                              ],
-                            );
-                          }
-                          return Opacity(
-                            opacity: 0.3,
-                            child: CardLoading(
-                              height: 35.sp,
-                              width: 35.sp,
-                              borderRadius: const BorderRadius.all(Radius.circular(25)),
-                              margin: const EdgeInsets.only(bottom: 10),
-                              cardLoadingTheme: const CardLoadingTheme(
-                                colorOne: Color.fromARGB(255, 219, 219, 219),
-                                colorTwo: Color.fromARGB(255, 187, 187, 187),
-                              ),
-                              curve: Curves.easeInOut,
-                            ),
-                          );
-                        },
-                      ),
-                      FutureBuilder(
-                        future: FirebaseCtrl.getSpecificDataOfCurrentUser('name'),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return Text(
-                              snapshot.data.toString(),
-                              style: TextStyle(
-                                color: const Color.fromARGB(255, 255, 255, 255),
-                                fontSize: 22.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            );
-                          }
-                          return Opacity(
-                            opacity: 0.3,
-                            child: CardLoading(
-                              height: 5.h,
-                              width: 20.w,
-                              borderRadius: const BorderRadius.all(Radius.circular(10)),
-                              margin: const EdgeInsets.only(bottom: 10),
-                              cardLoadingTheme: const CardLoadingTheme(
-                                colorOne: Color.fromARGB(255, 219, 219, 219),
-                                colorTwo: Color.fromARGB(255, 187, 187, 187),
-                              ),
-                              curve: Curves.easeInOut,
-                            ),
-                          );
-                        },
-                      ),
+                              );
+                            },
+                          ),
+                          FutureBuilder(
+                            future: FirebaseCtrl.getSpecificDataOfCurrentUser('name'),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                return Text(
+                                  snapshot.data.toString(),
+                                  style: TextStyle(
+                                    color: const Color.fromARGB(255, 255, 255, 255),
+                                    fontSize: 22.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              }
+                              return Opacity(
+                                opacity: 0.3,
+                                child: CardLoading(
+                                  height: 5.h,
+                                  width: 20.w,
+                                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                  margin: const EdgeInsets.only(bottom: 10),
+                                  cardLoadingTheme: const CardLoadingTheme(
+                                    colorOne: Color.fromARGB(255, 219, 219, 219),
+                                    colorTwo: Color.fromARGB(255, 187, 187, 187),
+                                  ),
+                                  curve: Curves.easeInOut,
+                                ),
+                              );
+                            },
+                          ),
 
-                      // Text(
-                      //   'حلقة المؤنسات الغاليات',
-                      //   style: TextStyle(
-                      //       fontSize: 16.sp,
-                      //       color: const Color.fromARGB(255, 236, 230, 247)),
-                      // ),
+                          // Text(
+                          //   'حلقة المؤنسات الغاليات',
+                          //   style: TextStyle(
+                          //       fontSize: 16.sp,
+                          //       color: const Color.fromARGB(255, 236, 230, 247)),
+                          // ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
