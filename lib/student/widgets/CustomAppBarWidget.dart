@@ -3,12 +3,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:shafee_app/services/authentication.dart';
+import 'package:shafee_app/services/auth.dart';
 import 'package:shafee_app/student/widgets/PopUpMenuWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CustomAppBarWidget extends StatelessWidget with PreferredSizeWidget {
-  final Widget mainPageTitle;
+  final String mainPageTitle;
 
   CustomAppBarWidget({
     Key? key,
@@ -21,7 +21,7 @@ class CustomAppBarWidget extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: mainPageTitle,
+      title: Text(mainPageTitle),
       actions: [
         PopUpMenuWidget(
           menuList: [

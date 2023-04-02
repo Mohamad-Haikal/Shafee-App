@@ -5,16 +5,12 @@ import 'package:shafee_app/services/routes.dart';
 import 'package:shafee_app/student/screens/OneReadingScreen.dart';
 
 class ReadingLogListElementWidget extends StatelessWidget {
-  final Color circleColor;
-  final String discription;
-  final int points;
+  final String recordId;
+  final Color statueColor;
+  final String title;
+  final String points;
   final String date;
-  const ReadingLogListElementWidget(
-      {Key? key,
-      required this.circleColor,
-      required this.discription,
-      required this.points,
-      required this.date})
+  const ReadingLogListElementWidget({Key? key, required this.statueColor, required this.title, required this.points, required this.date, required this.recordId})
       : super(key: key);
 
   @override
@@ -22,9 +18,7 @@ class ReadingLogListElementWidget extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(15),
       onTap: () {
-        Navigator.push(
-            context,
-            RouterCtrl.returnRoute(OneReadingScreen(readingType: 1)));
+        Navigator.push(context, RouterCtrl.returnRoute(OneReadingScreen(recordId: recordId)));
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -36,7 +30,7 @@ class ReadingLogListElementWidget extends StatelessWidget {
           children: [
             Expanded(
               flex: 1,
-              child: Icon(Icons.circle, color: circleColor),
+              child: Icon(Icons.circle, color: statueColor),
             ),
             Expanded(
               flex: 1,
@@ -44,8 +38,7 @@ class ReadingLogListElementWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 textDirection: TextDirection.rtl,
                 children: [
-                  Text('$points',
-                      style: const TextStyle(fontWeight: FontWeight.w600)),
+                  Text('$points', style: const TextStyle(fontWeight: FontWeight.w600)),
                   const SizedBox(
                     width: 5,
                   ),
@@ -89,7 +82,7 @@ class ReadingLogListElementWidget extends StatelessWidget {
               flex: 5,
               child: Center(
                 child: Text(
-                  discription,
+                  title,
                   style: const TextStyle(fontSize: 13),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

@@ -8,12 +8,7 @@ class StudentListSelectWidgetold extends StatelessWidget {
   final String discription;
   final int points;
   final String date;
-  const StudentListSelectWidgetold(
-      {Key? key,
-      required this.circleColor,
-      required this.discription,
-      required this.points,
-      required this.date})
+  const StudentListSelectWidgetold({Key? key, required this.circleColor, required this.discription, required this.points, required this.date})
       : super(key: key);
 
   @override
@@ -24,14 +19,11 @@ class StudentListSelectWidgetold extends StatelessWidget {
         Navigator.push(
             context,
             PageRouteBuilder(
-              pageBuilder: (context, animation, secondaryAnimation) =>
-                  const OneReadingScreen(
-                readingType: 1,
+              pageBuilder: (context, animation, secondaryAnimation) => const OneReadingScreen(
+                recordId: '1',
               ),
               transitionDuration: const Duration(milliseconds: 250),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) =>
-                      FadeTransition(
+              transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
                 opacity: animation,
                 child: child,
               ),
@@ -55,8 +47,7 @@ class StudentListSelectWidgetold extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 textDirection: TextDirection.rtl,
                 children: [
-                  Text('$points',
-                      style: const TextStyle(fontWeight: FontWeight.w600)),
+                  Text('$points', style: const TextStyle(fontWeight: FontWeight.w600)),
                   const SizedBox(
                     width: 5,
                   ),

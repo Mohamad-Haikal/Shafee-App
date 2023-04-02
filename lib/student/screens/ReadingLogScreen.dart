@@ -2,13 +2,17 @@
 
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shafee_app/main.dart';
+import 'package:shafee_app/services/auth.dart';
 import 'package:shafee_app/student/widgets/BottomNavBar.dart';
 import 'package:shafee_app/student/widgets/CustomAppBarWidget.dart';
 import 'package:shafee_app/student/widgets/ReadingLogListElementWidget.dart';
 import 'package:shafee_app/resources.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 
 class ReadingLogScreen extends StatefulWidget {
   const ReadingLogScreen({Key? key}) : super(key: key);
@@ -24,7 +28,7 @@ class _ReadingLogScreenState extends State<ReadingLogScreen> {
       extendBody: true,
       backgroundColor: ColorsData.primaryColor,
       appBar: CustomAppBarWidget(
-        mainPageTitle: Text(''),
+        mainPageTitle: "",
       ),
       bottomNavigationBar: BottomNavBar(index: 2),
       body: Column(
@@ -64,7 +68,6 @@ class _ReadingLogScreenState extends State<ReadingLogScreen> {
                     margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
                     elevation: 0,
                     child: Row(
-                      textDirection: TextDirection.rtl,
                       children: [
                         Expanded(
                           flex: 2,
@@ -125,20 +128,68 @@ class _ReadingLogScreenState extends State<ReadingLogScreen> {
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: ListView.builder(
-                      padding: const EdgeInsets.fromLTRB(18, 0, 18, 18),
-                      itemCount: 15,
-                      itemBuilder: (context, index) {
-                        return ReadingLogListElementWidget(
-                          circleColor: index % 2 == 0 ? const Color.fromARGB(255, 38, 166, 154) : const Color.fromARGB(255, 226, 112, 112),
-                          points: Random().nextInt(17) - 17,
-                          date: '10/03',
-                          discription: '${Random().nextInt(30) + 1}سرد ومراجعة الجزء ال',
-                        );
-                      },
-                    ),
-                  ),
+                  FutureBuilder(
+                      future: FirebaseFirestore.instance.collection('users').doc('${AuthCtrl.currentUser()?.uid}').get(),
+                      builder: (context, doc) {
+                        if (doc.hasData && !doc.hasError) {
+                          return Expanded(
+                            child: ListView.builder(
+                              padding: const EdgeInsets.fromLTRB(18, 0, 18, 18),
+                              itemCount: (((doc.data as DocumentSnapshot).data() as Map)['records'] as List).length,
+                              itemBuilder: (context, index) {
+                                var data = ((((doc.data as DocumentSnapshot).data() as Map)['records'] as List)[index] as Map);
+                                return ReadingLogListElementWidget(
+                                  recordId: data['id'],
+                                  statueColor:
+                                      data['isDone'] == true ? const Color.fromARGB(255, 38, 166, 154) : const Color.fromARGB(255, 226, 112, 112),
+                                  points: data['points'],
+                                  date: DateFormat("MM/dd").format((data['date'] as Timestamp).toDate()).toString(),
+                                  title: data['title'],
+                                );
+                              },
+                            ),
+                          );
+                        }
+                        return Expanded(
+                            flex: 9,
+                            child: Stack(
+                              children: [
+                                Expanded(
+                                  child: ListView.builder(
+                                    padding: const EdgeInsets.fromLTRB(18, 0, 18, 18),
+                                    itemCount: 9,
+                                    itemBuilder: (context, index) {
+                                      return Shimmer(
+                                        color: Colors.white,
+                                        colorOpacity: 0.9,
+                                        child: const ReadingLogListElementWidget(
+                                          recordId: '',
+                                          statueColor: Color.fromARGB(255, 255, 255, 255),
+                                          points: '',
+                                          date: '',
+                                          title: '',
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                                Opacity(
+                                  opacity: 0.5,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      // borderRadius: BorderRadius.circular(20.sp),
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                                const Center(
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 5,
+                                  ),
+                                )
+                              ],
+                            ));
+                      }),
                 ],
               ),
             ),

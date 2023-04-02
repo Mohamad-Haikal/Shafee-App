@@ -36,7 +36,7 @@ class TeacherDashboardScreenState extends State<TeacherDashboardScreen> {
           extendBody: true,
           backgroundColor: ColorsData.primaryColor,
           appBar: CustomAppBarWidget(
-            mainPageTitle: Text(''),
+            mainPageTitle: "",
           ),
           bottomNavigationBar: BottomNavBar(index: MyApp.appbarIndex),
           body: Center(

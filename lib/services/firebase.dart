@@ -4,15 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class FirebaseCtrl {
   static FirebaseAuth auth = FirebaseAuth.instance;
 
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-
   // Get specific data from specific user (uid)
   static getDataOfUser() async {
     Map data = await _getDataOfCurrentUser();
     return data;
   }
-
   static Future<Map> _getDataOfCurrentUser() async {
     final User? user = auth.currentUser;
     if (user != null) {
@@ -27,27 +23,6 @@ class FirebaseCtrl {
     }
     return {"NoAuth": "NoAuth"};
   }
-
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-
-  // Get specific data from specific user (uid)
-  static getDataOfSpecificUser({required var uid}) async {
-    Map? data = await _getDataOfAnyUser(uid: uid);
-    return data;
-  }
-
-  static Future<Map> _getDataOfAnyUser({required var uid}) async {
-    DocumentSnapshot<Map<dynamic, dynamic>> snapshot = await FirebaseFirestore.instance.doc(uid).get();
-    if (snapshot.exists) {
-      // User document exists
-      return snapshot.data() as Map;
-    }
-    return {"NoUser": "NoUser"};
-  }
-
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
 
   // Get specific data from specific user (uid)
   static Future<String?> getSpecificDataOfCurrentUser(String parameter) async {
@@ -67,7 +42,20 @@ class FirebaseCtrl {
     }
   }
 
-/////////////////////////////////////////////////////////////////////////////////
+  // Get specific data from specific user (uid)
+  static getDataOfSpecificUser({required var uid}) async {
+    Map? data = await _getDataOfSpecificUser(uid: uid);
+    return data;
+  }
+  static Future<Map> _getDataOfSpecificUser({required var uid}) async {
+    DocumentSnapshot<Map<dynamic, dynamic>> snapshot = await FirebaseFirestore.instance.doc(uid).get();
+    if (snapshot.exists) {
+      // User document exists
+      return snapshot.data() as Map;
+    }
+    return {"NoUser": "NoUser"};
+  }
+
 /////////////////////////////////////////////////////////////////////////////////
 
   // Get role of user [student - teacher - noUser - noAuth]
@@ -75,8 +63,4 @@ class FirebaseCtrl {
     var role = getSpecificDataOfCurrentUser('role');
     return role;
   }
-
-/////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////
-
 }

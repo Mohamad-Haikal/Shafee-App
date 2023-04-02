@@ -29,9 +29,11 @@ class TextViewBox extends StatelessWidget {
       flex: flex,
       child: Padding(
         padding: EdgeInsets.all(15.sp),
-        child: Material(
-          elevation: 6,
-          borderRadius: BorderRadius.circular(15.sp),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.sp),
+              color: Colors.white,
+              boxShadow: [BoxShadow(blurRadius: 10, spreadRadius: 0, offset: Offset(0, 5), color: Colors.grey.shade400)]),
           child: TextFormField(
             expands: true,
             maxLines: null,
@@ -59,7 +61,8 @@ class TextViewBox extends StatelessWidget {
                   color: const Color.fromARGB(255, 114, 114, 114), fontWeight: FontWeight.bold, fontSize: 15.sp, overflow: TextOverflow.visible),
               disabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(
-                  color: Color.fromARGB(255, 112, 112, 112),
+                  width: 0,
+                  color: Color.fromARGB(255, 255, 255, 255),
                 ),
                 borderRadius: BorderRadius.circular(15.sp),
                 gapPadding: 5,

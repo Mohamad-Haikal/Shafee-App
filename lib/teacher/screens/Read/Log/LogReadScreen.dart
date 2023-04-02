@@ -29,7 +29,7 @@ class _LogReadScreenState extends State<LogReadScreen> {
       extendBody: true,
       backgroundColor: ColorsData.primaryColor,
       appBar: CustomAppBarWidget(
-        mainPageTitle: Text(''),
+        mainPageTitle: "",
       ),
       bottomNavigationBar: BottomNavBar(index: 2),
       body: Column(

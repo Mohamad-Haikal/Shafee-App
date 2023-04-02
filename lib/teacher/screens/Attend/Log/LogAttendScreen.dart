@@ -26,7 +26,7 @@ class _LogAttendScreenState extends State<LogAttendScreen> {
       extendBody: true,
       backgroundColor: ColorsData.primaryColor,
       appBar: CustomAppBarWidget(
-        mainPageTitle: Text(''),
+        mainPageTitle: "",
       ),
       bottomNavigationBar: BottomNavBar(index: 2),
       body: Center(

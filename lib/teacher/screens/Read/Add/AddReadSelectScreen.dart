@@ -30,7 +30,7 @@ class _AddReadSelectScreenState extends State<AddReadSelectScreen> {
       extendBody: true,
       backgroundColor: ColorsData.primaryColor,
       appBar: CustomAppBarWidget(
-        mainPageTitle: Text(''),
+        mainPageTitle: "",
       ),
       bottomNavigationBar: BottomNavBar(index: 2),
       body: Column(

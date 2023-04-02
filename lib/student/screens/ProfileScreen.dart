@@ -43,7 +43,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
       extendBody: true,
       backgroundColor: ColorsData.primaryColor,
       appBar: CustomAppBarWidget(
-        mainPageTitle: Text(''),
+        mainPageTitle: "",
       ),
       bottomNavigationBar: BottomNavBar(index: 2),
       body: Stack(
@@ -101,17 +101,13 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                                       ),
                                     );
                                   },
-                                  errorWidget: (context, url, error) => Stack(
-                                    children: [
-                                      Container(
-                                        color: Colors.white,
-                                      ),
-                                      Icon(
-                                        Icons.person,
-                                        size: 40.sp,
-                                        color: ColorsData.primaryColor,
-                                      ),
-                                    ],
+                                  errorWidget: (context, url, error) => Container(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    child: Icon(
+                                      Icons.person,
+                                      size: 40.sp,
+                                      color: Color.fromARGB(255, 139, 139, 139),
+                                    ),
                                   ),
                                   fit: BoxFit.fill,
                                   width: 40.sp,
