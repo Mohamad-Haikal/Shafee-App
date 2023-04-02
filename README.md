@@ -1,5 +1,5 @@
 <div align="center" id="top" style="background-color: #f2f2f2;">
-  <img src="https://github.com/Mohamad-Haikal/Shafee-App" alt="App Icon" width="250" height="250" style="border: 5px solid #555; border-radius: 50%; box-shadow: 2px 2px 5px #888;">
+  <img src="https://github.com/Mohamad-Haikal/Shafee-App/blob/main/assets/images/app-icon.png" alt="App Icon" width="250" height="250" style="border: 5px solid #555; border-radius: 50%; box-shadow: 2px 2px 5px #888;">
 </div>
 
 
