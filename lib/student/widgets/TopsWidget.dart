@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class TopsWidget extends StatelessWidget {
   String name;
   int rank;
+  int points;
   static List<Color> listOfColor = [
     const Color(0xFF8DB9B5),
     const Color(0xFF89A5B3),
@@ -13,35 +14,66 @@ class TopsWidget extends StatelessWidget {
     const Color(0xFF7E87B6),
     const Color(0xFFBB8194),
   ];
-  TopsWidget({Key? key, required this.name, required this.rank})
-      : super(key: key);
+  TopsWidget({Key? key, required this.name, required this.rank, required this.points}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: rank == 1
-          ? 120
+          ? 140
           : rank == 2
-              ? 110
+              ? 125
               : rank == 3
-                  ? 100
-                  : 90,
+                  ? 110
+                  : 95,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25),
         ),
         margin: const EdgeInsets.symmetric(vertical: 10),
         elevation: 10,
+        surfaceTintColor: Colors.white,
         child: Row(
           children: [
+            Expanded(
+              flex: 7,
+              child: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    name,
+                    style: TextStyle(
+                      fontWeight: rank == 1
+                          ? FontWeight.w800
+                          : rank == 2
+                              ? FontWeight.w800
+                              : rank == 3
+                                  ? FontWeight.w700
+                                  : FontWeight.w600,
+                      fontSize: rank == 1
+                          ? 25
+                          : rank == 2
+                              ? 18
+                              : rank == 3
+                                  ? 16
+                                  : 13,
+                    ),
+                  ),
+                  Text(
+                    'مجموع النقاط : ${points.toString()}',
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
+                  )
+                ],
+              )),
+            ),
             Expanded(
               flex: 3,
               child: Container(
                 decoration: BoxDecoration(
                   color: checkColor(rank),
                   borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(25),
-                      bottomLeft: Radius.circular(25)),
+                      topLeft: Radius.circular(25), bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25), topRight: Radius.circular(25)),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -50,8 +82,7 @@ class TopsWidget extends StatelessWidget {
                         child: Text(
                       rank.toString(),
                       style: TextStyle(
-                          fontWeight:
-                              rank <= 3 ? FontWeight.w900 : FontWeight.w600,
+                          fontWeight: rank <= 3 ? FontWeight.w900 : FontWeight.w600,
                           fontSize: rank == 1
                               ? 30
                               : rank == 2
@@ -63,29 +94,6 @@ class TopsWidget extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-            Expanded(
-              flex: 7,
-              child: Center(
-                  child: Text(
-                name,
-                style: TextStyle(
-                  fontWeight: rank == 1
-                      ? FontWeight.w900
-                      : rank == 2
-                          ? FontWeight.w800
-                          : rank == 3
-                              ? FontWeight.w700
-                              : FontWeight.w600,
-                  fontSize: rank == 1
-                      ? 20
-                      : rank == 2
-                          ? 18
-                          : rank == 3
-                              ? 16
-                              : 13,
-                ),
-              )),
             ),
           ],
         ),

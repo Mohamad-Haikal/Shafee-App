@@ -46,6 +46,7 @@ class StudentDashboardScreenState extends State<StudentDashboardScreen> {
             await FirebaseFirestore.instance.collection('users').doc('${AuthCtrl.currentUser()?.uid}').get();
       },
     );
+
     return ResponsiveSizer(
       builder: (context, orientation, deviceType) {
         return Scaffold(
@@ -92,7 +93,7 @@ class StudentDashboardScreenState extends State<StudentDashboardScreen> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(20.sp),
                                     child: CachedNetworkImage(
-                                      cacheKey: 'ProfileImage',
+                                      // cacheKey: 'ProfileImage',
                                       imageUrl: '${sp.getString('profileImageUrl')}',
                                       placeholder: (context, url) {
                                         return Opacity(
@@ -172,7 +173,6 @@ class StudentDashboardScreenState extends State<StudentDashboardScreen> {
                           );
                         },
                       ),
-
                       // Text(
                       //   'حلقة المؤنسات الغاليات',
                       //   style: TextStyle(

@@ -33,6 +33,7 @@ class Home extends StatelessWidget {
                 .getDownloadURL()
                 .onError((error, stackTrace) => profileImageUrl = 'error')
                 .then((value) => {profileImageUrl = value});
+            print(profileImageUrl);
             if (profileImageUrl != null || profileImageUrl != 'error') {
               sp.setString('profileImageUrl', profileImageUrl!);
             }

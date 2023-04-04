@@ -9,6 +9,7 @@ class FirebaseCtrl {
     Map data = await _getDataOfCurrentUser();
     return data;
   }
+
   static Future<Map> _getDataOfCurrentUser() async {
     final User? user = auth.currentUser;
     if (user != null) {
@@ -47,6 +48,7 @@ class FirebaseCtrl {
     Map? data = await _getDataOfSpecificUser(uid: uid);
     return data;
   }
+
   static Future<Map> _getDataOfSpecificUser({required var uid}) async {
     DocumentSnapshot<Map<dynamic, dynamic>> snapshot = await FirebaseFirestore.instance.doc(uid).get();
     if (snapshot.exists) {

@@ -1,12 +1,17 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables,  , file_names, unnecessary_const
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shafee_app/main.dart';
+import 'package:shafee_app/services/auth.dart';
 import 'package:shafee_app/student/widgets/BottomNavBar.dart';
 import 'package:shafee_app/student/widgets/CustomAppBarWidget.dart';
 import 'package:shafee_app/student/widgets/TopsWidget.dart';
 import 'package:shafee_app/resources.dart';
+
+import '../../services/firebase.dart';
 
 class TopsScreen extends StatefulWidget {
   const TopsScreen({Key? key}) : super(key: key);
@@ -18,6 +23,11 @@ class TopsScreen extends StatefulWidget {
 class _TopsScreenState extends State<TopsScreen> {
   @override
   Widget build(BuildContext context) {
+    SchedulerBinding.instance.addPostFrameCallback(
+      (_) async {
+        await FirebaseFirestore.instance.collection('users').doc('${AuthCtrl.currentUser()?.uid}').get();
+      },
+    );
     return Scaffold(
       extendBody: true,
       backgroundColor: ColorsData.primaryColor,
@@ -125,69 +135,42 @@ class _TopsScreenState extends State<TopsScreen> {
                       ),
                     ),
                     Expanded(
-                      child: ListView.builder(
-                        itemBuilder: (context, index) {
-                          return <TopsWidget>[
-                            TopsWidget(
-                              name: 'محمد هيكل',
-                              rank: 1,
-                            ),
-                            TopsWidget(
-                              name: 'محمود أحمد',
-                              rank: 2,
-                            ),
-                            TopsWidget(
-                              name: 'محمد معاذ',
-                              rank: 3,
-                            ),
-                            TopsWidget(
-                              name: 'نور محمود',
-                              rank: 4,
-                            ),
-                            TopsWidget(
-                              name: 'محمود حمد',
-                              rank: 5,
-                            ),
-                            TopsWidget(
-                              name: 'حمد حامد',
-                              rank: 6,
-                            ),
-                            TopsWidget(
-                              name: ' اسماعيل نور',
-                              rank: 7,
-                            ),
-                            TopsWidget(
-                              name: 'خالد اسماعيل',
-                              rank: 8,
-                            ),
-                            TopsWidget(
-                              name: 'حمد ثابت',
-                              rank: 9,
-                            ),
-                            TopsWidget(
-                              name: 'ثابت خالد',
-                              rank: 10,
-                            ),
-                            TopsWidget(
-                              name: 'ثابت خالد',
-                              rank: 11,
-                            ),
-                            TopsWidget(
-                              name: 'ثابت خالد',
-                              rank: 12,
-                            ),
-                            TopsWidget(
-                              name: 'ثابت خالد',
-                              rank: 13,
-                            ),
-                            TopsWidget(
-                              name: 'ثابت خالد',
-                              rank: 14,
-                            ),
-                          ][index];
-                        },
-                        itemCount: 14,
-                        padding: EdgeInsets.symmetric(horizontal: 20.sp),
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 75),
+                        child: FutureBuilder<QuerySnapshot>(
+                          future: FirebaseFirestore.instance.collection('users').get(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) {
+                              return Center(child: CircularProgressIndicator());
+                            }
+                            List<DocumentSnapshot> docs = snapshot.data!.docs;
+                            Map usersPoints = {};
+                            for (var user in docs) {
+                              if ((user.data()! as Map)['role'] == 'student') {
+                                List userRecords = (user.data() as Map)['records'];
+                                int totalPoints = 0;
+                                for (var record in userRecords) {
+                                  totalPoints = totalPoints + int.parse(record['points']);
+                                }
+                                usersPoints.addEntries({(user.data() as Map)['name']: totalPoints}.entries);
+                              }
+                            }
+                            Map sortedUsersPoints = Map.fromEntries(
+                              usersPoints.entries.toList()..sort((e1, e2) => e2.value.compareTo(e1.value)),
+                            );
+                            return ListView.builder(
+                              itemCount: sortedUsersPoints.length,
+                              itemBuilder: (context, index) {
+                                return TopsWidget(
+                                  name: '${sortedUsersPoints.keys.toList()[index]}',
+                                  points: int.parse('${sortedUsersPoints.values.toList()[index]}'),
+                                  rank: index + 1,
+                                );
+                              },
+                              padding: EdgeInsets.symmetric(horizontal: 20.sp),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ],

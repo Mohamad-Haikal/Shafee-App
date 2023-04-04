@@ -83,7 +83,7 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20.sp),
                                 child: CachedNetworkImage(
-                                  cacheKey: 'ProfileImage',
+                                  // cacheKey: 'ProfileImage',
                                   imageUrl: '${sp.getString('profileImageUrl')}',
                                   placeholder: (context, url) {
                                     return Opacity(
